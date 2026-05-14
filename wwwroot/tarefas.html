@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="carregarTarefas()">
+    <h1>Minhas Tarefas</h1>
+
+    <input id="descricao" placeholder="Descrição da tarefa">
+
+    <select id="status">
+        <option value="false">Pendente</option>
+        <option value="true">Concluída</option>
+    </select>
+
+    <button onclick="criarTarefa()">Cadastrar tarefa</button>
+
+    <hr>
+
+    <div id="listaTarefas"></div>
+
+    <button onclick="logout()">Sair</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

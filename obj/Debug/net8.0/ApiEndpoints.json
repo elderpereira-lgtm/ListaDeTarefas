@@ -70,7 +70,7 @@
         "IsRequired": true
       },
       {
-        "Name": "tarefa",
+        "Name": "tarefaAtualizada",
         "Type": "ListaDeTarefas.Models.Tarefa",
         "IsRequired": true
       }
@@ -91,6 +91,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ListaDeTarefas.Controllers.TarefasController",
+    "Method": "TarefasUsuario",
+    "RelativePath": "api/tarefas/usuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

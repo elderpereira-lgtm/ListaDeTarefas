@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ListaDeTarefas.Data;
+﻿using ListaDeTarefas.Data;
 using ListaDeTarefas.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ListaDeTarefas.Controllers
 {
@@ -18,27 +19,52 @@ namespace ListaDeTarefas.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            int? userId = HttpContext.Session.GetInt32("UserId");
+            return Ok(_context.Tarefas.ToList());
+        }
 
-            if (userId == null)
-                return Unauthorized("Você precisa fazer login");
+        [HttpGet("usuario")]
+        public IActionResult TarefasUsuario()
+        {
+            var sessaoUsuario = HttpContext.Session.GetString("IdLogado");
 
-            var tarefas = _context.Tarefas
-                .Where(x => x.UserId == userId)
-                .ToList();
+            if (sessaoUsuario == null)
+            {
+                return Unauthorized("Faca login antes");
+            }
 
-            return Ok(tarefas);
+            var idLogado = Request.Cookies["IdLogado"];
+
+            if (idLogado != null)
+            {
+                var resultado = from u in _context.Users
+                                join t in _context.Tarefas
+                                on u.Id equals t.UserId
+                                where u.Id == int.Parse(idLogado)
+                                select new
+                                {
+                                    Usuario = u.Nome,
+                                    u.Email,
+                                    Tarefa = t.Descricao,
+                                    t.Status
+                                };
+
+                return Ok(resultado.ToList());
+            }
+
+            return Unauthorized("Faca login antes");
         }
 
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
         {
-            int? userId = HttpContext.Session.GetInt32("UserId");
+            var idLogado = Request.Cookies["IdLogado"];
 
-            if (userId == null)
-                return Unauthorized("Você precisa fazer login");
+            if (idLogado == null)
+            {
+                return Unauthorized("Faca login antes");
+            }
 
-            tarefa.UserId = userId.Value;
+            tarefa.UserId = int.Parse(idLogado);
 
             _context.Tarefas.Add(tarefa);
             _context.SaveChanges();
@@ -47,45 +73,37 @@ namespace ListaDeTarefas.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Tarefa tarefa)
+        public IActionResult Update(int id, Tarefa tarefaAtualizada)
         {
-            int? userId = HttpContext.Session.GetInt32("UserId");
+            var tarefa = _context.Tarefas.Find(id);
 
-            if (userId == null)
-                return Unauthorized("Você precisa fazer login");
+            if (tarefa == null)
+            {
+                return NotFound("Tarefa nao encontrada");
+            }
 
-            var tarefaBanco = _context.Tarefas
-                .FirstOrDefault(x => x.Id == id && x.UserId == userId);
-
-            if (tarefaBanco == null)
-                return NotFound();
-
-            tarefaBanco.Descricao = tarefa.Descricao;
-            tarefaBanco.Status = tarefa.Status;
+            tarefa.Descricao = tarefaAtualizada.Descricao;
+            tarefa.Status = tarefaAtualizada.Status;
 
             _context.SaveChanges();
 
-            return Ok(tarefaBanco);
+            return Ok(tarefa);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            int? userId = HttpContext.Session.GetInt32("UserId");
-
-            if (userId == null)
-                return Unauthorized("Você precisa fazer login");
-
-            var tarefa = _context.Tarefas
-                .FirstOrDefault(x => x.Id == id && x.UserId == userId);
+            var tarefa = _context.Tarefas.Find(id);
 
             if (tarefa == null)
-                return NotFound();
+            {
+                return NotFound("Tarefa nao encontrada");
+            }
 
             _context.Tarefas.Remove(tarefa);
             _context.SaveChanges();
 
-            return Ok();
+            return Ok("Tarefa removida");
         }
     }
 }

@@ -142,3 +142,5 @@ E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\obj\Debug\net8.0\refint\ListaDeT
 E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\obj\Debug\net8.0\ListaDeTarefas.pdb
 E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\obj\Debug\net8.0\ListaDeTarefas.genruntimeconfig.cache
 E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\obj\Debug\net8.0\ref\ListaDeTarefas.dll
+E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\bin\Debug\net8.0\ListaDeTarefas.staticwebassets.runtime.json
+E:\ListaDeTarefas\ListaDeTarefas\ListaDeTarefas\obj\Debug\net8.0\ListaDeTarefas.sourcelink.json

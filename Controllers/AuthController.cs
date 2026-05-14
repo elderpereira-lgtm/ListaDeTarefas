@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ListaDeTarefas.Data;
+﻿using ListaDeTarefas.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.Controllers
 {
@@ -21,18 +21,23 @@ namespace ListaDeTarefas.Controllers
                 .FirstOrDefault(x => x.Email == email && x.Senha == senha);
 
             if (user == null)
-                return Unauthorized("Email ou senha inválidos");
+            {
+                return Unauthorized("Email ou senha invalidos");
+            }
 
-            HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("Nome", user.Nome);
+            HttpContext.Session.SetString("IdLogado", user.Id.ToString());
 
-            return Ok("Login realizado com sucesso");
+            Response.Cookies.Append("IdLogado", user.Id.ToString());
+
+            return Ok("Login realizado");
         }
 
         [HttpPost("logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+
+            Response.Cookies.Delete("IdLogado");
 
             return Ok("Logout realizado");
         }

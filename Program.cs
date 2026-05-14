@@ -29,6 +29,9 @@ app.UseSwagger();
 
 app.UseSwaggerUI();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseSession();

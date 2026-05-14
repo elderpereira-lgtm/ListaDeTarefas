@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\cadastro.html",
+      "PackagePath": "staticwebassets\\cadastro.html"
+    },
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\login.html",
+      "PackagePath": "staticwebassets\\login.html"
+    },
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\script.js",
+      "PackagePath": "staticwebassets\\script.js"
+    },
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\style.css",
+      "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "E:\\ListaDeTarefas\\ListaDeTarefas\\ListaDeTarefas\\wwwroot\\tarefas.html",
+      "PackagePath": "staticwebassets\\tarefas.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ListaDeTarefas.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ListaDeTarefas.props",
+      "PackagePath": "build\\ListaDeTarefas.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ListaDeTarefas.props",
+      "PackagePath": "buildMultiTargeting\\ListaDeTarefas.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ListaDeTarefas.props",
+      "PackagePath": "buildTransitive\\ListaDeTarefas.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
