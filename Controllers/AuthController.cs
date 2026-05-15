@@ -27,7 +27,14 @@ namespace ListaDeTarefas.Controllers
 
             HttpContext.Session.SetString("IdLogado", user.Id.ToString());
 
-            Response.Cookies.Append("IdLogado", user.Id.ToString());
+            Response.Cookies.Append("IdLogado", user.Id.ToString(),
+
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
 
             return Ok("Login realizado");
         }
